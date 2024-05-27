@@ -21,4 +21,7 @@ mat-grid-tile {
     text-align: center;
   }
   
+  th{
+    background-color: rgb(101, 149, 189)
+  }
   

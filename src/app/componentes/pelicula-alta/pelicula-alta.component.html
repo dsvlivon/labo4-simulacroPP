@@ -1,1 +1,40 @@
 <p>pelicula-alta works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+    <div class="mb-3">
+        <label class="form-label">Nombre: </label>
+        <input type="text" class="form-control" formControlName="nombre">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Fecha de Estreno: </label>
+        <input type="text" class="form-control" formControlName="fechaEstreno">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cantidad de Publico: </label>
+        <input type="number" class="form-control" formControlName="cantidadPublico">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Foto: </label>
+        <input type="text" class="form-control" formControlName="foto">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Tipo: </label>
+        <select class="form-control" formControlName="tipo">
+            <option *ngFor="let tipo of tiposPelicula" [value]="tipo">{{ tipo }}</option>
+        </select>
+    </div>
+   
+
+    <div style="margin-top: 20px;"></div>
+    <div style="align-items: center; display: flex;">
+        <input type="submit" value="Guardar " class="btn-76">
+    </div>
+    
+</form>
+
+<!-- 
+    nombre: string="";
+    fechaEstreno: string="";
+    cantidadPublico:number=0;
+    foto: string="";
+    tipo: TipoPelicula=TipoPelicula.Otros; //por default
+ -->

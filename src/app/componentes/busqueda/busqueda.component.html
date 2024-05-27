@@ -1,7 +1,12 @@
-<p>busqueda works!</p>
-
+<!-- <p>busqueda works!</p> -->
 <app-tabla-pelicula (peliculaSeleccionada)="manejarSeleccion($event)"></app-tabla-pelicula>
 <div  *ngIf="mostrarDetalle">
     <app-detalle-pelicula [pelicula]="detallesPelicula"></app-detalle-pelicula>
 
+</div>
+
+<div class="botones"> 
+    <p style="margin-left: 60px;">Agregar Pelicula:</p>
+    
+    <button class="button-63 style" (click)="goAltaPelicula()">Agregar Pelicula</button>
 </div>

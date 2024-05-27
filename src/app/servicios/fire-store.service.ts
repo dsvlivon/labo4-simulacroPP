@@ -21,9 +21,10 @@ export class FireStoreService {
 
   constructor(private fireStore: Firestore) { }
 
-  agregarLog(user:any, coleccion:string) {
+  setData(obj:any, coleccion:string) {
     let col = collection(this.fireStore, coleccion);
-    addDoc(col, { fecha: new Date(), "user": user})
+    
+    addDoc(col, obj)
   }
 
   GetData(coleccion:string){
