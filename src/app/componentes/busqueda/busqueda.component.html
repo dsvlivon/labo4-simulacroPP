@@ -1,4 +1,7 @@
 <p>busqueda works!</p>
 
 <app-tabla-pelicula (peliculaSeleccionada)="manejarSeleccion($event)"></app-tabla-pelicula>
-<app-detalle-pelicula [pelicula]="detallesPelicula"></app-detalle-pelicula>
+<div  *ngIf="mostrarDetalle">
+    <app-detalle-pelicula [pelicula]="detallesPelicula"></app-detalle-pelicula>
+
+</div>

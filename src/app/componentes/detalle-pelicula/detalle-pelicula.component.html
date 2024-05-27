@@ -1,9 +1,22 @@
-<p>detalle-pelicula works!</p>
-<div *ngIf="pelicula">
-    <h2>Detalles de la Película</h2>
-    <ul>
-      <li *ngFor="let key of keys">
-        <strong>{{ key }}:</strong> {{ pelicula[key] }}
-      </li>
-    </ul>
-  </div>
+<!-- <p>detalle-pelicula works!</p> -->
+<div class="detalle-pelicula-overlay" (click)="cerrarModal()" *ngIf="mostrarDetalle">
+    <div class="detalle-pelicula-container">
+        <button class="cerrar-btn" (click)="cerrarModal()">X</button>
+        <div *ngIf="pelicula">
+            <h2>Detalles de la Película</h2>
+            <img  [src]="pelicula['foto']" alt="Foto de la película" class="peli-pic">
+            <ng-container *ngFor="let key of keys">
+                <ul><li *ngIf="key !== 'foto'">
+                        <strong>{{ key }}:</strong> {{ pelicula[key] }}
+                </li></ul>
+                
+                <!-- <ul *ngIf="key !== 'foto'">
+                    <li>
+                        <strong>{{ key }}:</strong> {{ pelicula[key] }}
+                    </li>
+                </ul> -->
+            </ng-container>
+        </div>
+    </div>
+</div>
+

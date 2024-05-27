@@ -1,0 +1,51 @@
+.detalle-pelicula-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .detalle-pelicula-container {
+    /* background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 50px 5px lightskyblue; 
+    display: flex;
+    flex-direction: column; */
+    background-image: url('https://github.com/dsvlivon/imagenes/blob/main/parciales/fondo-background-azul.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 50px 5px lightskyblue; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+  }
+
+  .peli-pic {
+    width: auto;
+    padding: 10px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35%;
+  }
+
+  .cerrar-btn {
+    align-self: flex-end;
+    margin-top: auto;
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+    text-shadow: 0 0 10px #00f;
+  }
+  
