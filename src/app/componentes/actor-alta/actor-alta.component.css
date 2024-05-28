@@ -1,0 +1,12 @@
+.form{
+    /* background-image: url('https://github.com/dsvlivon/imagenes/blob/main/parciales/fondo-background-azul.jpg?raw=true');
+    background-size: cover;
+    background-position: center; */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 50px 5px lightskyblue; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+}

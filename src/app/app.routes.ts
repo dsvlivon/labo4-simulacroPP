@@ -2,8 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
-import { AltaComponent } from './componentes/alta/alta.component';
-import { Actor } from './models/actor';
 import { PeliculaAltaComponent } from './componentes/pelicula-alta/pelicula-alta.component';
 import { ActorAltaComponent } from './componentes/actor-alta/actor-alta.component';
 import { ActorListadoComponent } from './componentes/actor-listado/actor-listado.component';

@@ -1,1 +1,18 @@
 <p>actor-alta works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="mb-3">
+        <label class="form-label">Nombre: </label>
+        <input type="text" class="form-control" formControlName="nombre">
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Pais: </label>
+        <select class="form-control" formControlName="pais">
+            <!-- <option *ngFor="let tipo of tiposPelicula" [value]="tipo">{{ tipo }}</option> -->
+        </select>
+    </div>
+    <div style="margin-top: 20px;"></div>
+    <div style="align-items: center; display: flex;">
+        <input type="submit" value="Guardar " class="btn-76">
+    </div>
+</form>

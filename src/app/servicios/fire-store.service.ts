@@ -15,6 +15,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 })
 export class FireStoreService {
   public res:any[] = [];
+  public actores:any[] = [];
+  
   public countRes:number = 0;
   private sub!:Subscription;
 
@@ -41,6 +43,19 @@ export class FireStoreService {
     })
   }
 
+  GetActores(coleccion:string){
+    let col = collection(this.fireStore, coleccion);
+    
+    const observable = collectionData(col);
+
+    this.sub = observable.subscribe((respuesta:any) => {
+
+      this.actores = respuesta;
+      this.countRes = this.res.length;
+
+      console.log("fireStore service: ", this.res);
+    })
+  }
   // createMessage(message: any) {
   //   this.fireStore.collection<any>('chat').add(message);
   // }

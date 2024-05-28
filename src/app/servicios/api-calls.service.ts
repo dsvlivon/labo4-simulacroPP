@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { Pelicula } from '../models/pelicula';
-import { Observable } from 'rxjs';
-import { map, retry } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
 
 
 const movies_API_URL = 'https://api.themoviedb.org/3/movie/popular';
 const movies_API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZDQ3OGY2ZmVhOWI0ZDM0YzQwZjZhMTc5MGRhM2U5OSIsInN1YiI6IjY2NTI1NWZjNDZjNWNiMWU5ODdmMzk4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hUqh8EA08b9V3NDHDiSLOFV4JhB4tPVWemsL04tKEXg';
-
+const paises_API_URL = 'https://restcountries.com/v3.1/all';
 
 
 @Injectable({
@@ -19,6 +19,25 @@ export class ApiCallsService {
   public peliculas:Pelicula[] = [];
 
   constructor(private http: HttpClient) { }
+
+  getPaises(): Observable<any[]> {
+    return this.http.get<any[]>(paises_API_URL)
+      .pipe(
+        map(paises => paises.sort((a, b) => {
+          if (a.name.common < b.name.common) {
+            return -1;
+          } else if (a.name.common > b.name.common) {
+            return 1;
+          } else {
+            return 0;
+          }
+        })),
+        catchError(error => {
+          console.error('Error fetching countries:', error);
+          return of([]); // Return an empty array or handle the error as needed
+        })
+      );
+  }
 
   TraerPeliculas(): Observable<Pelicula[]> {
     const headers = new HttpHeaders({

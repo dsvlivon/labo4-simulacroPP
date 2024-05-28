@@ -6,24 +6,39 @@ import { UserAuthServiceService } from '../../servicios/user-auth-service.servic
 import { MatCheckboxModule, MatCheckboxChange} from '@angular/material/checkbox';
 import { FireStoreService } from '../../servicios/fire-store.service';
 import { FirestoreModule } from '@angular/fire/firestore';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ActorAltaComponent } from "../actor-alta/actor-alta.component";
+import { Actor } from '../../models/actor';
 
+
+enum TipoPelicula {
+  Terror = 'terror',
+  Comedia = 'comedia',
+  Amor = 'amor',
+  Otros = 'otros'
+}
 
 @Component({
-  selector: 'app-pelicula-alta',
-  standalone: true,
-  imports: [ ReactiveFormsModule, FormsModule, MatCheckboxModule, FirestoreModule, CommonModule],
-  templateUrl: './pelicula-alta.component.html',
-  styleUrl: './pelicula-alta.component.css'
+    selector: 'app-pelicula-alta',
+    standalone: true,
+    templateUrl: './pelicula-alta.component.html',
+    styleUrl: './pelicula-alta.component.css',
+    imports: [ReactiveFormsModule, FormsModule, MatCheckboxModule, FirestoreModule, CommonModule, MatGridListModule, ActorAltaComponent]
 })
 
 
-export class PeliculaAltaComponent {
+export class PeliculaAltaComponent implements OnInit{
   nombre: string="";
   fechaEstreno: string="";
   cantidadPublico:number=0;
   foto: string="";
+
+  lista: Actor[] = [];
+  // actor: Actor = new Actor(" "," "," ");
+  actoresSelect: string[] =[];
   tipo: TipoPelicula=TipoPelicula.Otros; //por default
   tiposPelicula: string[] = Object.values(TipoPelicula);
+  
 
   form: FormGroup;
 
@@ -33,12 +48,14 @@ export class PeliculaAltaComponent {
     private fireStore: FireStoreService
   ){
     this.form = new FormGroup({
-    nombre: new FormControl(),
-    fechaEstreno: new FormControl(),
-    cantidadPublico: new FormControl(),
-    foto: new FormControl(),
-    tipo: new FormControl()
-})}
+          nombre: new FormControl(),
+          fechaEstreno: new FormControl(),
+          cantidadPublico: new FormControl(),
+          foto: new FormControl(),
+          tipo: new FormControl(),
+          actor: new FormControl()
+        })
+    }
 
   onSubmit() {
     // const date =this.form.value['fechaEstreno'].format('DD-MM-YYYY HH:mm:ss');
@@ -48,12 +65,24 @@ export class PeliculaAltaComponent {
       console.log("agregamo una peli!!!");
   }
 
+  getDatos(){
+    this.fireStore.GetActores('actores');
+    this.lista = this.fireStore.actores;
+    this.setearSelect()
+    console.log("alta-peli actores component: ", this.lista);
+    this.fireStore.res = [];
+  }
 
+  ngOnInit(): void { 
+    this.getDatos();
+
+  }
+
+  setearSelect(){  
+    this.lista.forEach(element => {
+      this.actoresSelect.push(element.nombre);
+    });
+    console.log("select actores: ", this.actoresSelect)
+  }
 }
 
-enum TipoPelicula {
-  Terror = 'terror',
-  Comedia = 'comedia',
-  Amor = 'amor',
-  Otros = 'otros'
-}

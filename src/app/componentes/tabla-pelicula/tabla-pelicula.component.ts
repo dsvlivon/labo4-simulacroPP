@@ -22,17 +22,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export class TablaPeliculaComponent implements OnInit{
   @Output() peliculaSeleccionada = new EventEmitter<any>();
   displayedColumns: string[] = [ 'foto', 'nombre', 'tipo', 'fechaEstreno', 'cantidadPublico'];
-  peliculas: Pelicula[] = [];
+  lista: Pelicula[] = [];
 
   constructor( private fireStore:FireStoreService ){}
 
-  ngOnInit(): void { this.getPeliculas(); }
+  ngOnInit(): void { this.getDatos(); }
 
-  getPeliculas(){
-    this.fireStore.GetData('peliculas');
-    this.peliculas = this.fireStore.res;
-
-    // console.log("tablapelis service: ", this.peliculas);
+  getDatos(){
+    setTimeout(() => {
+      this.fireStore.GetData('peliculas');
+      this.lista = this.fireStore.res;
+      this.fireStore.res= [];
+    }, 200);
+    // console.log("tablapelis component: ", this.lista);
   }
 
   emitirDetalles(pelicula: any) {
